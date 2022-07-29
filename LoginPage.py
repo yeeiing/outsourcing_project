@@ -62,10 +62,15 @@ class LoginPage:
 
     # === 페이지 이동 함수 === 
     def goFindInfo(self):
+        self.ui.loginPageErrorMessage.setText(" ") 
+
         self.ui.stackedWidget.setCurrentWidget(self.ui.FindInfoPage)
 
     def goSignup(self):
+        self.ui.loginPageErrorMessage.setText(" ") 
+
         self.ui.stackedWidget.setCurrentWidget(self.ui.SignupPage)
+
 
     # === 로그인 진행 ===
     def login(self):
@@ -75,24 +80,36 @@ class LoginPage:
             data.append(value)
         print(data)
 
+        # self.id = self.ui.loginPageInputList[0].text()
+        # self.pw = self.ui.loginPageInputList[1].text()
+
         table ="profile"
         column = ["id","pw"]
+        # data = [self.id,self.pw]
 
         self.db.read(table,column,data,"")
 
         if len(self.db.readResult)>0:
             # print("로그인 성공")
 
-            # self.ui.labelLoginSuccess.setText("로그인 성공") 
+            self.clearInput()
 
-            # self.game.myId=data[0]
-            # print(self.game.myId)
+            self.ui.loginPageErrorMessage.setText(" ") # 일단 이렇게 해놓고 , 입력할때 없어지는거 구현하면 지우기
 
             self.ui.stackedWidget.setCurrentWidget(self.ui.PlaylistPage)
         else:
-            print("로그인 실패") 
-     
+            # print("로그인 실패") 
+
+            self.clearInput()
+
             self.ui.loginPageErrorMessage.setText("아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요.") 
+
+            # self.ui.loginPageErrorMessage.setText(" ") 
+
+    # 정보 초기화 : 아이디 비번 입력한거 초기화
+    def clearInput(self):
+            for i in range(0,len(self.ui.loginPageInputList)):
+                self.ui.loginPageInputList[i].setText("")
 
     def show(self):
         self.loginPage.show()

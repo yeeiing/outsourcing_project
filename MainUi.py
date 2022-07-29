@@ -1,4 +1,9 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import *
+from PyQt5.QtCore import *
+from PyQt5.QtGui import *
+from PyQt5.QtWidgets import *
+
 
 class MainUi:
     def __init__(self):
@@ -23,10 +28,10 @@ class MainUi:
 
         self.LoginPage = QtWidgets.QWidget()
         self.LoginPage.setObjectName("LoginPage")
-
+# ======== page main logo
         # login logo
         self.loginPageLogo = QtWidgets.QLabel(self.LoginPage)
-        self.loginPageLogo.setGeometry(410, 190, 150, 100)
+        self.loginPageLogo.setGeometry(400, 300, 400, 100)
         font = QtGui.QFont()
         font.setFamily("Bodoni Bk BT")
         font.setPixelSize(56)
@@ -34,13 +39,13 @@ class MainUi:
         self.loginPageLogo.setStyleSheet("color:white")
         self.loginPageLogo.setObjectName("loginPageLogo")
         self.loginPageLogo.setText("login")
-
+# ======== label
         # id, pw label
         self.loginPageLabelList=[]
         self.loginPageLabelTextList=["id","pw"]
         for i in range(0,2):
                 loginPageLabel = QtWidgets.QLabel(self.LoginPage)
-                loginPageLabel.setGeometry(320, 300+(i*50), 50, 35)
+                loginPageLabel.setGeometry(340, 400+(i*50), 50, 40)
                 font = QtGui.QFont()
                 font.setFamily("Bodoni Bk BT")
                 font.setPixelSize(36)
@@ -50,12 +55,12 @@ class MainUi:
                 loginPageLabel.setText(self.loginPageLabelTextList[i])
 
                 self.loginPageLabelList.append(loginPageLabel)
-
+# ======== lnput
         # id, pw input
         self.loginPageInputList=[]
         for i in range(0,2):
                 loginPageInput = QtWidgets.QLineEdit(self.LoginPage)
-                loginPageInput.setGeometry(400, 300+(i*50), 400, 35)
+                loginPageInput.setGeometry(400, 400+(i*50), 400, 40)
                 font = QtGui.QFont()
                 font.setFamily("나눔고딕")
                 font.setPixelSize(11)
@@ -64,24 +69,34 @@ class MainUi:
 
                 self.loginPageInputList.append(loginPageInput)
 
+                if i == 0:
+                    loginPageInput.setPlaceholderText("아이디")
+                    loginPageInput.setAlignment(Qt.AlignCenter)
+                else:
+                    loginPageInput.setPlaceholderText("비밀번호")
+                    loginPageInput.setAlignment(Qt.AlignCenter)
+
+                    loginPageInput.setEchoMode(QtWidgets.QLineEdit.Password)
+
+# ======== btn
         # login btn
         self.loginPageBtn=QtWidgets.QPushButton(self.LoginPage)
-        self.loginPageBtn.setGeometry(400, 600, 400, 35)
+        self.loginPageBtn.setGeometry(400, 550, 400, 50)
         self.loginPageBtn.setStyleSheet("background-color : #5B9BD5; color : white; border-radius:5px;")
         self.loginPageBtn.setText("로그인")
 
         # go findinfo page btn
         self.loginPageFindInfoBtn=QtWidgets.QPushButton(self.LoginPage)
-        self.loginPageFindInfoBtn.setGeometry(500,640,100,35)
+        self.loginPageFindInfoBtn.setGeometry(500,600,100,35)
         self.loginPageFindInfoBtn.setStyleSheet("color : #00B0F0")
         self.loginPageFindInfoBtn.setText("아이디/비번찾기")
 
         # go signup page btn
         self.loginPageSignupBtn=QtWidgets.QPushButton(self.LoginPage)
-        self.loginPageSignupBtn.setGeometry(600,640,100,35)
+        self.loginPageSignupBtn.setGeometry(600,600,70,35)
         self.loginPageSignupBtn.setStyleSheet("color : #00B0F0")
         self.loginPageSignupBtn.setText("회원가입")
-
+# ======== error message
         # login error label
         self.loginPageErrorMessage = QtWidgets.QLabel(self.LoginPage)
         self.loginPageErrorMessage.setGeometry(QtCore.QRect(400, 500, 400, 50))
@@ -144,6 +159,24 @@ class MainUi:
                 signupPageInput.setStyleSheet("background-color:white; border-radius:5px;")
 
                 self.signupPageInputList.append(signupPageInput)
+
+                if i == 0:
+                    signupPageInput.setPlaceholderText("아이디 : 20자 이내로 작성")
+                    signupPageInput.setAlignment(Qt.AlignCenter)
+                elif i == 1:
+                    signupPageInput.setPlaceholderText("비밀번호 : 20자 이내로 작성")
+                    signupPageInput.setAlignment(Qt.AlignCenter)
+
+                    signupPageInput.setEchoMode(QtWidgets.QLineEdit.PasswordEchoOnEdit)
+
+                elif i == 2 :
+                    signupPageInput.setPlaceholderText("이름")
+                    signupPageInput.setAlignment(Qt.AlignCenter)
+
+                else:
+                    signupPageInput.setPlaceholderText("전화번호 : - 없이 11자 작성")
+                    signupPageInput.setAlignment(Qt.AlignCenter)
+                        
 # ======== btn
         # id : double check btn
         self.signupPageIdDoubleCheckBtn=QtWidgets.QPushButton(self.SignupPage)

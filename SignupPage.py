@@ -59,7 +59,7 @@ class SignupPage:
         else:
             # 연락처 길이 예외 처리
             if len(contact)!=11:
-                self.ui.signupPageErrorMessage.setText("\ncontact : 11자 이내로 작성 !") 
+                self.ui.signupPageErrorMessage.setText("\ncontact : 11자 작성 !") 
             else:
                 # 연락처 중복 예외처리 진행
                 table="profile"
@@ -69,6 +69,8 @@ class SignupPage:
                 self.db.read(table,column,data,"")
 
                 if len(self.db.readResult)>0:
+                    self.clearInput()
+
                     self.ui.signupPageErrorMessage.setText("이미 존재하는 연락처입니다.\n로그인을 진행해주세요.") 
 
                 else:
@@ -80,15 +82,21 @@ class SignupPage:
 
                     self.db.insert(tableSignup,columnSignup,dataSignup)
 
+                    self.clearInput()
+
+                    self.ui.signupPageErrorMessage.setText(" ")
+
                     # 회원가입 성공시, 1. 바로 로그인 페이지로 이동하게 고치기
                     self.ui.stackedWidget.setCurrentWidget(self.ui.LoginPage)
 
                     # 회원가입 성공시, 2. 나의 플레이리스트 공백(=0? none?)으로 미리 설정
-                    table = "playlist"
-                    column = ["playlistTitle","videoTitle","userId"]
-                    data=[0,0,id]
+                    # table = "playlist"
+                    # column = ["playlistTitle","videoTitle","userId"]
+                    # data=[0,0,id]
 
-                    self.db.insert(table,column,data)
+                    # self.db.insert(table,column,data)
 
-    def clear(self):
-        pass            
+    # 정보 초기화 : 아이디 비번 입력한거 초기화
+    def clearInput(self):
+            for i in range(0,len(self.ui.signupPageInputList)):
+                self.ui.signupPageInputList[i].setText("")
