@@ -9,6 +9,8 @@ class SignupPage:
 
     # 회원가입 페이지에서 뒤로가기 버튼 : 로그인 페이지로 이동
     def goBackPageInSignupPage(self):
+        self.clearInput()
+    
         self.ui.stackedWidget.setCurrentWidget(self.ui.LoginPage)
 
     # 길이 예외처리+중복처리
@@ -69,8 +71,6 @@ class SignupPage:
                 self.db.read(table,column,data,"")
 
                 if len(self.db.readResult)>0:
-                    self.clearInput()
-
                     self.ui.signupPageErrorMessage.setText("이미 존재하는 연락처입니다.\n로그인을 진행해주세요.") 
 
                 else:

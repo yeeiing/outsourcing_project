@@ -31,7 +31,7 @@ class MainUi:
 # ======== page main logo
         # login logo
         self.loginPageLogo = QtWidgets.QLabel(self.LoginPage)
-        self.loginPageLogo.setGeometry(400, 300, 400, 100)
+        self.loginPageLogo.setGeometry(400, 290, 400, 100)
         font = QtGui.QFont()
         font.setFamily("Bodoni Bk BT")
         font.setPixelSize(56)
@@ -45,7 +45,7 @@ class MainUi:
         self.loginPageLabelTextList=["id","pw"]
         for i in range(0,2):
                 loginPageLabel = QtWidgets.QLabel(self.LoginPage)
-                loginPageLabel.setGeometry(340, 400+(i*50), 50, 40)
+                loginPageLabel.setGeometry(345, 390+(i*50), 50, 40)
                 font = QtGui.QFont()
                 font.setFamily("Bodoni Bk BT")
                 font.setPixelSize(36)
@@ -60,7 +60,7 @@ class MainUi:
         self.loginPageInputList=[]
         for i in range(0,2):
                 loginPageInput = QtWidgets.QLineEdit(self.LoginPage)
-                loginPageInput.setGeometry(400, 400+(i*50), 400, 40)
+                loginPageInput.setGeometry(400, 390+(i*50), 400, 40)
                 font = QtGui.QFont()
                 font.setFamily("나눔고딕")
                 font.setPixelSize(11)
@@ -81,25 +81,25 @@ class MainUi:
 # ======== btn
         # login btn
         self.loginPageBtn=QtWidgets.QPushButton(self.LoginPage)
-        self.loginPageBtn.setGeometry(400, 550, 400, 50)
+        self.loginPageBtn.setGeometry(400, 540, 400, 50)
         self.loginPageBtn.setStyleSheet("background-color : #5B9BD5; color : white; border-radius:5px;")
         self.loginPageBtn.setText("로그인")
 
         # go findinfo page btn
         self.loginPageFindInfoBtn=QtWidgets.QPushButton(self.LoginPage)
-        self.loginPageFindInfoBtn.setGeometry(500,600,100,35)
+        self.loginPageFindInfoBtn.setGeometry(500,590,100,35)
         self.loginPageFindInfoBtn.setStyleSheet("color : #00B0F0")
         self.loginPageFindInfoBtn.setText("아이디/비번찾기")
 
         # go signup page btn
         self.loginPageSignupBtn=QtWidgets.QPushButton(self.LoginPage)
-        self.loginPageSignupBtn.setGeometry(600,600,70,35)
+        self.loginPageSignupBtn.setGeometry(600,590,70,35)
         self.loginPageSignupBtn.setStyleSheet("color : #00B0F0")
         self.loginPageSignupBtn.setText("회원가입")
 # ======== error message
         # login error label
         self.loginPageErrorMessage = QtWidgets.QLabel(self.LoginPage)
-        self.loginPageErrorMessage.setGeometry(QtCore.QRect(400, 500, 400, 50))
+        self.loginPageErrorMessage.setGeometry(QtCore.QRect(400, 490, 400, 50))
         self.loginPageErrorMessage.setAlignment(QtCore.Qt.AlignCenter) # 글씨 가운데 정렬 문법 
         font = QtGui.QFont()
         font.setFamily("나눔고딕")
@@ -122,7 +122,7 @@ class MainUi:
 # ======== page main logo
         # signup logo
         self.loginPageLogo = QtWidgets.QLabel(self.SignupPage)
-        self.loginPageLogo.setGeometry(410, 190, 200, 100)
+        self.loginPageLogo.setGeometry(400, 200, 400, 100) 
         font = QtGui.QFont()
         font.setFamily("Bodoni Bk BT")
         font.setPixelSize(56)
@@ -136,7 +136,7 @@ class MainUi:
         self.sigupPageLabelTextList=["id","pw","name","contact"]
         for i in range(0,4):
                 signupPageLabel = QtWidgets.QLabel(self.SignupPage)
-                signupPageLabel.setGeometry(270, 300+(i*50), 100, 35)
+                signupPageLabel.setGeometry(290, 300+(i*50), 100, 40)
                 font = QtGui.QFont()
                 font.setFamily("Bodoni Bk BT")
                 font.setPixelSize(36)
@@ -151,7 +151,7 @@ class MainUi:
         self.signupPageInputList=[]
         for i in range(0,4):
                 signupPageInput = QtWidgets.QLineEdit(self.SignupPage)
-                signupPageInput.setGeometry(400, 300+(i*50), 400, 35)
+                signupPageInput.setGeometry(400, 300+(i*50), 400, 40)
                 font = QtGui.QFont()
                 font.setFamily("나눔고딕")
                 font.setPixelSize(11)
@@ -180,19 +180,19 @@ class MainUi:
 # ======== btn
         # id : double check btn
         self.signupPageIdDoubleCheckBtn=QtWidgets.QPushButton(self.SignupPage)
-        self.signupPageIdDoubleCheckBtn.setGeometry(685, 305, 100, 25)
+        self.signupPageIdDoubleCheckBtn.setGeometry(690, 305, 100, 30)
         self.signupPageIdDoubleCheckBtn.setStyleSheet("background-color : #5B9BD5; color : white;")
         self.signupPageIdDoubleCheckBtn.setText("중복확인")
 
         # signup btn
         self.signupPageBtn=QtWidgets.QPushButton(self.SignupPage)
-        self.signupPageBtn.setGeometry(400, 600, 400, 35)
+        self.signupPageBtn.setGeometry(400, 560, 400, 50)
         self.signupPageBtn.setStyleSheet("background-color : #5B9BD5; color : white; border-radius:5px;")
         self.signupPageBtn.setText("회원가입")
 
         # signup page back btn : go login page
         self.signupPageBackBtn=QtWidgets.QPushButton(self.SignupPage)
-        self.signupPageBackBtn.setGeometry(550,640,100,35)
+        self.signupPageBackBtn.setGeometry(550,610,100,35)
         self.signupPageBackBtn.setStyleSheet("color : #00B0F0")
         self.signupPageBackBtn.setText("뒤로가기")
 # ======== error message
