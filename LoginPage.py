@@ -8,7 +8,7 @@ from PyQt5 import QtWidgets
 
 import Database
 import MainUi
-import SignupPage, FindInfoPage, VideoPage
+import SignupPage, FindInfoPage, PlaylistPage, VideoPage
 
 class LoginPage:
     def __init__(self):
@@ -19,10 +19,14 @@ class LoginPage:
         self.db=Database.Database()
 
         self.signup=SignupPage.SignupPage(self.ui,self.db)
+        self.findinfo=FindInfoPage.FindInfoPage(self.ui,self.db)
+        self.playlist=PlaylistPage.PlaylistPage(self.ui,self.db)
+        self.video=VideoPage.VideoPage(self.ui,self.db)
 
-        # # 버튼, 이동 페이지 연결 
-        # self.ui.loginPageFindInfoBtn.clicked.connect(self.goFindInfo)
-        # self.ui.loginPageSignupBtn.clicked.connect(self.goSignup)
+        # === 버튼, 이동 페이지 연결 ===
+        self.ui.loginPageFindInfoBtn.clicked.connect(self.goFindInfo)
+        self.ui.loginPageSignupBtn.clicked.connect(self.goSignup)
+        self.ui.loginPageBtn.clicked.connect(self.login)
 
         # for index in range(0,len(self.ui.mainPageBtnList)):
             
@@ -33,16 +37,16 @@ class LoginPage:
 
     # === 이벤트 함수 생성 ===
 
-    # 페이지 이동 함수
-    def moveEvent(self,event,index):
-        if index == 0:
-            self.ui.stackedWidget.setCurrentWidget(self.ui.PlaylistPage)
+    # # 페이지 이동 함수
+    # def moveEvent(self,event,index):
+    #     if index == 0:
+    #         self.ui.stackedWidget.setCurrentWidget(self.ui.PlaylistPage)
                 
-        elif index == 1:
-            self.ui.stackedWidget.setCurrentWidget(self.ui.FindInfoPage)
+    #     elif index == 1:
+    #         self.ui.stackedWidget.setCurrentWidget(self.ui.FindInfoPage)
 
-        elif index == 2:
-            self.ui.stackedWidget.setCurrentWidget(self.ui.SignupPage)
+    #     elif index == 2:
+    #         self.ui.stackedWidget.setCurrentWidget(self.ui.SignupPage)
 
 
     def enterEvent(self,event,index):
@@ -56,19 +60,39 @@ class LoginPage:
         )
 
 
-    # # === 페이지 이동 함수 === 
+    # === 페이지 이동 함수 === 
+    def goFindInfo(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.FindInfoPage)
 
-    # def goFindInfo(self):
-    #     self.ui.stackedWidget.setCurrentWidget(self.ui.FindInfoPage)
+    def goSignup(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.SignupPage)
 
-    # def goSignup(self):
-    #     self.ui.stackedWidget.setCurrentWidget(self.ui.SignupPage)
+    # === 로그인 진행 ===
+    def login(self):
+        data=[]
+        for i in range(0,len(self.ui.loginPageInputList)):
+            value=self.ui.loginPageInputList[i].text()
+            data.append(value)
+        print(data)
 
-    # def showRecord(self):
-    #     self.ui.stackedWidget.setCurrentWidget(self.ui.RecordCheckPage)
+        table ="profile"
+        column = ["id","pw"]
 
-    # def showRanking(self):
-    #     self.ui.stackedWidget.setCurrentWidget(self.ui.RankingPage)
+        self.db.read(table,column,data,"")
+
+        if len(self.db.readResult)>0:
+            # print("로그인 성공")
+
+            # self.ui.labelLoginSuccess.setText("로그인 성공") 
+
+            # self.game.myId=data[0]
+            # print(self.game.myId)
+
+            self.ui.stackedWidget.setCurrentWidget(self.ui.PlaylistPage)
+        else:
+            print("로그인 실패") 
+     
+            self.ui.loginPageErrorMessage.setText("아이디 또는 비밀번호를 잘못 입력했습니다.\n입력하신 내용을 다시 확인해주세요.") 
 
     def show(self):
         self.loginPage.show()

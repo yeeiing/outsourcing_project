@@ -3,13 +3,13 @@ import sqlite3
 class Database:
     def __init__(self):
         # 연결
-        self.connect=sqlite3.connect("RSPgame.db")
+        self.connect=sqlite3.connect("data.db")
         self.cursor=self.connect.cursor()
         
         # 프로필
         self.cursor.execute("CREATE TABLE IF NOT EXISTS profile(id TEXT PRIAMRY KEY, pw TEXT, name TEXT, contact TEXT)")
-        # 전적 / 나의 정보
-        self.cursor.execute("CREATE TABLE IF NOT EXISTS record(numOfWin INTEGER, numOfDefeat INTEGER, numOfDraw INTEGER, userId TEXT, FOREIGN KEY(userId) REFERENCES profile(id))")    
+        # 개인 플레이스트 정보
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS playlist(playlisyTitle TEXT, videoTitle TEXT, userId TEXT, FOREIGN KEY(userId) REFERENCES profile(id))")    
     
     # insert 합치기 
     def insert(self,table,column,data):
