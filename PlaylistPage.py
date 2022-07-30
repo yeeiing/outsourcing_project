@@ -7,8 +7,6 @@ class PlaylistPage:
         self.ui=ui
         self.db=db
 
-        # self.RankingCheck()
-
         self.ui.playlistPageLogoutkBtn.clicked.connect(self.logoutInPlaylistPage)
         self.ui.playlistPageAddBtn.clicked.connect(self.playlistAdd)
 
@@ -22,16 +20,3 @@ class PlaylistPage:
     def playlistAdd(self):
         self.ui.dialogBox(self.dialogBox,"playlist title")
         self.dialogBox.show()
-
-
-
-    # def RankingCheck(self):
-    #     table = "record"
-    #     column = ["numOfWin"]
-    #     data= []
-
-    #     self.db.read(table,column,data,"yes")
-    #     for index in range(0,len(self.db.readResult)):
-    #         self.ui.RankingLabelList[index+1].setText(str(index+1)+"\t\t"+str(self.db.readResult[index][3])+"\t\t"+str(self.db.readResult[index][0]))
-    #         if index>11:
-    #             break

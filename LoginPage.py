@@ -62,11 +62,15 @@ class LoginPage:
 
     # === 페이지 이동 함수 === 
     def goFindInfo(self):
+        self.clearInput()
+
         self.ui.loginPageErrorMessage.setText(" ") 
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.FindInfoPage)
 
     def goSignup(self):
+        self.clearInput()
+        
         self.ui.loginPageErrorMessage.setText(" ") 
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.SignupPage)

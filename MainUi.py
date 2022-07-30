@@ -70,10 +70,10 @@ class MainUi:
                 self.loginPageInputList.append(loginPageInput)
 
                 if i == 0:
-                    loginPageInput.setPlaceholderText("아이디")
+                    loginPageInput.setPlaceholderText("아이디 : 20자 이내로 작성")
                     loginPageInput.setAlignment(Qt.AlignCenter)
                 else:
-                    loginPageInput.setPlaceholderText("비밀번호")
+                    loginPageInput.setPlaceholderText("비밀번호 : 20자 이내로 작성")
                     loginPageInput.setAlignment(Qt.AlignCenter)
 
                     loginPageInput.setEchoMode(QtWidgets.QLineEdit.Password)
@@ -235,10 +235,10 @@ class MainUi:
         self.findInfoPageLabelTextList=["forgot id","forgot pw"]
         for i in range(0,2):
                 findIndoPageLabel = QtWidgets.QLabel(self.FindInfoPage)
-                findIndoPageLabel.setGeometry(150+(i*580),300, 500, 50)
+                findIndoPageLabel.setGeometry(150+(i*600),300, 400, 100)
                 font = QtGui.QFont()
                 font.setFamily("Bodoni Bk BT")
-                font.setPixelSize(36)
+                font.setPixelSize(56)
                 findIndoPageLabel.setFont(font)
                 findIndoPageLabel.setStyleSheet("color : white;")
 
@@ -251,7 +251,7 @@ class MainUi:
         self.forgorIdLabelTextList=["name","contact"]
         for i in range(0,2):
                 forgotIdLabel = QtWidgets.QLabel(self.FindInfoPage)
-                forgotIdLabel.setGeometry(30, 360+(i*50), 100, 35) # change
+                forgotIdLabel.setGeometry(45, 400+(i*50), 100, 40) # change
                 font = QtGui.QFont()
                 font.setFamily("Bodoni Bk BT")
                 font.setPixelSize(36)
@@ -266,7 +266,7 @@ class MainUi:
         self.forgotIdInputList=[]
         for i in range(0,2):
                 forgetIdInput = QtWidgets.QLineEdit(self.FindInfoPage)
-                forgetIdInput.setGeometry(150, 360+(i*50), 400, 35) # change
+                forgetIdInput.setGeometry(150, 400+(i*50), 400, 40) # change
                 font = QtGui.QFont()
                 font.setFamily("나눔고딕")
                 font.setPixelSize(11)
@@ -274,13 +274,21 @@ class MainUi:
                 forgetIdInput.setStyleSheet("background-color:white; border-radius:5px;")
 
                 self.forgotIdInputList.append(forgetIdInput)
+
+                if i == 0:
+                    forgetIdInput.setPlaceholderText("이름")
+                    forgetIdInput.setAlignment(Qt.AlignCenter)
+                else:
+                    forgetIdInput.setPlaceholderText("전화번호 : - 없이 11자 작성")
+                    forgetIdInput.setAlignment(Qt.AlignCenter)
+
 # ======== forgot pw
         # forgot pw label
         self.forgotPwLabelList=[]
         self.forgotPwLabelTextList=["id","name","contact"]
         for i in range(0,3):
                 forgotPwLabel = QtWidgets.QLabel(self.FindInfoPage)
-                forgotPwLabel.setGeometry(595, 360+(i*50), 100, 35) # change
+                forgotPwLabel.setGeometry(645, 400+(i*50), 100, 40) # change
                 font = QtGui.QFont()
                 font.setFamily("Bodoni Bk BT")
                 font.setPixelSize(36)
@@ -295,7 +303,7 @@ class MainUi:
         self.forgotPwInputList=[]
         for i in range(0,3):
                 forgetPwInput = QtWidgets.QLineEdit(self.FindInfoPage)
-                forgetPwInput.setGeometry(710, 360+(i*50), 400, 35) # change
+                forgetPwInput.setGeometry(750, 400+(i*50), 400, 40) # change
                 font = QtGui.QFont()
                 font.setFamily("나눔고딕")
                 font.setPixelSize(11)
@@ -303,29 +311,40 @@ class MainUi:
                 forgetPwInput.setStyleSheet("background-color:white; border-radius:5px;")
 
                 self.forgotPwInputList.append(forgetPwInput)
+
+                if i == 0:
+                    forgetPwInput.setPlaceholderText("아이디 : 20자 이내로 작성")
+                    forgetPwInput.setAlignment(Qt.AlignCenter)
+                elif i == 1:
+                    forgetPwInput.setPlaceholderText("이름")
+                    forgetPwInput.setAlignment(Qt.AlignCenter)
+                else:
+                    forgetPwInput.setPlaceholderText("전화번호 : - 없이 11자 작성")
+                    forgetPwInput.setAlignment(Qt.AlignCenter)
+
 # ======== btn 
         # forget id btn 
         self.forgotIdBtn=QtWidgets.QPushButton(self.FindInfoPage)
-        self.forgotIdBtn.setGeometry(400, 600, 100, 35) # change
+        self.forgotIdBtn.setGeometry(450, 510, 100, 50) # change
         self.forgotIdBtn.setStyleSheet("background-color : #5B9BD5; color : white; border-radius:5px;")
         self.forgotIdBtn.setText("아이디 찾기")
 
         # forget pw btn
         self.forgotPwBtn=QtWidgets.QPushButton(self.FindInfoPage)
-        self.forgotPwBtn.setGeometry(1000, 600, 100, 35) # change
+        self.forgotPwBtn.setGeometry(1050, 560, 100, 50) # change
         self.forgotPwBtn.setStyleSheet("background-color : #5B9BD5; color : white; border-radius:5px;")
         self.forgotPwBtn.setText("비밀번호 찾기")
 
         # find info page back btn : go login page
         self.findInfoPageBackBtn=QtWidgets.QPushButton(self.FindInfoPage)
-        self.findInfoPageBackBtn.setGeometry(550,650,100,35)
+        self.findInfoPageBackBtn.setGeometry(550,700,100,35)
         self.findInfoPageBackBtn.setStyleSheet("color : #00B0F0")
         self.findInfoPageBackBtn.setText("뒤로가기")
 # ======== error
         # forgot id error message
         self.forgotIdErrorMessage = QtWidgets.QLabel(self.FindInfoPage)
-        self.forgotIdErrorMessage.setGeometry(QtCore.QRect(150, 700, 400, 35)) # change
-        self.forgotIdErrorMessage.setAlignment(QtCore.Qt.AlignCenter) # 글씨 가운데 정렬 문법 
+        self.forgotIdErrorMessage.setGeometry(150, 620, 400, 35) # change
+        self.forgotIdErrorMessage.setAlignment(Qt.AlignCenter) # 글씨 가운데 정렬 문법 
         font = QtGui.QFont()
         font.setFamily("나눔고딕")
         font.setPointSize(11)
@@ -337,8 +356,8 @@ class MainUi:
 
         # forgot pw error message
         self.forgotPwErrorMessage = QtWidgets.QLabel(self.FindInfoPage)
-        self.forgotPwErrorMessage.setGeometry(QtCore.QRect(710, 700, 400, 35)) # change
-        self.forgotPwErrorMessage.setAlignment(QtCore.Qt.AlignCenter) # 글씨 가운데 정렬 문법 
+        self.forgotPwErrorMessage.setGeometry(750, 620, 400, 35) 
+        self.forgotPwErrorMessage.setAlignment(Qt.AlignCenter) # 글씨 가운데 정렬 문법 
         font = QtGui.QFont()
         font.setFamily("나눔고딕")
         font.setPointSize(11)
@@ -365,7 +384,7 @@ class MainUi:
         font.setFamily("Bodoni Bk BT")
         font.setPixelSize(56)
         self.playlistPageLogo.setFont(font)
-        self.playlistPageLogo.setStyleSheet("color:white")
+        self.playlistPageLogo.setStyleSheet("color:white;")
         self.playlistPageLogo.setObjectName("playlistPageLogo")
         self.playlistPageLogo.setText("playlist")
 
@@ -420,9 +439,13 @@ class MainUi:
 # ======== btn 
         # add btn 
         self.playlistPageAddBtn=QtWidgets.QPushButton(self.PlaylistPage)
-        self.playlistPageAddBtn.setGeometry(280,190,100,100) 
+        self.playlistPageAddBtn.setGeometry(265,190,50,100) 
         self.playlistPageAddBtn.setStyleSheet("color : white")
-        self.playlistPageAddBtn.setText("+")
+        self.playlistPageAddBtn.setText("🆕")
+        font = QtGui.QFont()
+        font.setFamily("Bodoni Bk BT")
+        font.setPixelSize(40)
+        self.playlistPageAddBtn.setFont(font)
 
 
         # remove btn
@@ -480,11 +503,11 @@ class MainUi:
         Dialog.setStyleSheet("background-color:#E7E6E6;")
 
         self.dialogText = QtWidgets.QLabel(Dialog)
-        self.dialogText.setGeometry(QtCore.QRect(0,10,300,50))
+        self.dialogText.setGeometry(QtCore.QRect(0,25,300,50))
         
         font = QtGui.QFont()
         font.setFamily("나눔고딕")
-        font.setPixelSize(10) # 더 조은 방법 : font에 픽셀 사이즈 주는 방법 / 해상도마다 글씨크기가 자동으로 달라짐 : pixelsize 사용하기
+        font.setPixelSize(14) # 더 조은 방법 : font에 픽셀 사이즈 주는 방법 / 해상도마다 글씨크기가 자동으로 달라짐 : pixelsize 사용하기
         
         self.dialogText.setFont(font)
         self.dialogText.setStyleSheet("color:black;")
