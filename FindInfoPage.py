@@ -11,7 +11,7 @@ class FindInfoPage:
         self.ui.forgotIdBtn.clicked.connect(self.forgotId)
         self.ui.forgotPwBtn.clicked.connect(self.forgotPw)
 
-        self.dialogBox = QtWidgets.QDialog()
+        self.findInfoDialog = QtWidgets.QDialog()
 
     # 정보 찾기 페이지에서 뒤로가기 버튼 : 로그인 페이지로 이동
     def goBackPageInFindInfoPage(self):
@@ -37,7 +37,7 @@ class FindInfoPage:
         column = ["name","contact"]
         # data=[name,contact]
 
-        self.db.read(table,column,data,"")
+        self.db.read(table,column,data)
 
         if len(self.db.readResult)>0:
             self.clearForgotIdInput()
@@ -46,8 +46,8 @@ class FindInfoPage:
 
             # print("아이디 찾기 성공")
 
-            self.ui.dialogBox(self.dialogBox,"아이디는\n"+str(self.db.readResult[0][0]))
-            self.dialogBox.show()
+            self.ui.findInfoDialog(self.findInfoDialog,"아이디는\n"+str(self.db.readResult[0][0]))
+            self.findInfoDialog.show()
 
         else:
             self.clearForgotIdInput()
@@ -73,7 +73,7 @@ class FindInfoPage:
         column = ["id","name","contact"]
         # data=[id,name,contact]
 
-        self.db.read(table,column,data,"")
+        self.db.read(table,column,data)
 
         if len(self.db.readResult)>0:
             self.clearForgotPwInput()
@@ -82,8 +82,8 @@ class FindInfoPage:
 
             # print("비밀번호 찾기 성공")
 
-            self.ui.dialogBox(self.dialogBox,"비밀번호\n"+str(self.db.readResult[0][1]))
-            self.dialogBox.show()
+            self.ui.findInfoDialog(self.dialfindInfoDialogogBox,"비밀번호\n"+str(self.db.readResult[0][1]))
+            self.findInfoDialog.show()
 
         else:
             self.clearForgotPwInput()

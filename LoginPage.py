@@ -28,6 +28,8 @@ class LoginPage:
         self.ui.loginPageSignupBtn.clicked.connect(self.goSignup)
         self.ui.loginPageBtn.clicked.connect(self.login)
 
+        self.ui.loginPageVideoBtn.clicked.connect(self.goVideo)
+
         # for index in range(0,len(self.ui.mainPageBtnList)):
             
         #     self.ui.mainPageBtnList[index].clicked.connect(lambda event, nowIndex=index : self.moveEvent(event,nowIndex))
@@ -50,17 +52,14 @@ class LoginPage:
 
 
     def enterEvent(self,event,index):
-        self.ui.mainPageBtnList[index].setStyleSheet(
-            "background-color:white"
-        )
+        self.ui.mainPageBtnList[index].setStyleSheet("background-color:white")
 
     def leaveEvent(self,event,index):
-        self.ui.mainPageBtnList[index].setStyleSheet(
-           ( "background-color:#2E75B6; color:white; border-radius:10px;")
-        )
+        self.ui.mainPageBtnList[index].setStyleSheet( "background-color:#2E75B6; color:white; border-radius:10px;")
 
 
     # === 페이지 이동 함수 === 
+    # Event
     def goFindInfo(self):
         self.clearInput()
 
@@ -70,19 +69,24 @@ class LoginPage:
 
     def goSignup(self):
         self.clearInput()
-        
+
         self.ui.loginPageErrorMessage.setText(" ") 
 
         self.ui.stackedWidget.setCurrentWidget(self.ui.SignupPage)
 
+    def goVideo(self):
+        self.ui.stackedWidget.setCurrentWidget(self.ui.VideoPage)
+
 
     # === 로그인 진행 ===
+    # loginEvent 로 바꿔주기 
     def login(self):
         data=[]
         for i in range(0,len(self.ui.loginPageInputList)):
             value=self.ui.loginPageInputList[i].text()
             data.append(value)
-        print(data)
+
+        # print(data)
 
         # self.id = self.ui.loginPageInputList[0].text()
         # self.pw = self.ui.loginPageInputList[1].text()
@@ -91,7 +95,7 @@ class LoginPage:
         column = ["id","pw"]
         # data = [self.id,self.pw]
 
-        self.db.read(table,column,data,"")
+        self.db.read(table,column,data)
 
         if len(self.db.readResult)>0:
             # print("로그인 성공")

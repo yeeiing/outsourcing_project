@@ -6,10 +6,9 @@ class Database:
         self.connect=sqlite3.connect("data.db")
         self.cursor=self.connect.cursor()
         
-        # 프로필
-        self.cursor.execute("CREATE TABLE IF NOT EXISTS profile(id TEXT PRIAMRY KEY, pw TEXT, name TEXT, contact TEXT)")
-        # 개인 플레이스트 정보
-        self.cursor.execute("CREATE TABLE IF NOT EXISTS playlist(playlisyTitle TEXT, videoTitle TEXT, userId TEXT, FOREIGN KEY(userId) REFERENCES profile(id))")    
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS profile(id TEXT PRIMARY KEY, pw TEXT, name TEXT, contact TEXT)")
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS playlist(playlistTitle TEXT, userId TEXT, FOREIGN KEY(userId) REFERENCES profile(id))") 
+        self.cursor.execute("CREATE TABLE IF NOT EXISTS video(playlistTitle TEXT, videoTitle TEXT, videoLink TEXT, userId TEXT, FOREIGN KEY(userId) REFERENCES profile(id))")   
     
     # insert 합치기 
     def insert(self,table,column,data):
@@ -32,24 +31,18 @@ class Database:
         self.connect.commit()    
 
     # read 합치기 
-    def read(self,table,column,data,yes):
-        if yes=="yes":
-            sql=" SELECT * FROM "+ table +" ORDER BY " + column + " DESC"
-            print(sql)
-            self.cursor.execute(sql)
-        else:
-            sql=" SELECT * FROM "+ table +" WHERE "
-            # 원하는 column 값 넣어주기 
-            for index in range(0,len(column)):
-                sql+=column[index]+" = ? "
-                # AND 찍어주기 
-                if index >= 0 and index +1 != len(column):
-                    sql += " AND "
+    def read(self,table,column,data):
+        sql=" SELECT * FROM "+ table +" WHERE "
+        # 원하는 column 값 넣어주기 
+        for index in range(0,len(column)):
+            sql+=column[index]+" = ? "
+            # AND 찍어주기 
+            if index >= 0 and index +1 != len(column):
+                sql += " AND "
 
-            # print(sql,data)
-            self.cursor.execute(sql,data)
-
-        self.readResult=self.cursor.fetchall()
+        # print(sql)
+        self.cursor.execute(sql,data)
+        self.readResult=self.cursor.fetchall() # return 으로 받기 
         # print(self.readResult)
 
     # update 합치기 

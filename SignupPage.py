@@ -14,6 +14,7 @@ class SignupPage:
         self.ui.stackedWidget.setCurrentWidget(self.ui.LoginPage)
 
     # 길이 예외처리+중복처리
+    # duplicate
     def idDoubleCheck(self): 
         # id=self.ui.signupPageInputId.text()
         id=self.ui.signupPageInputList[0].text()
@@ -22,7 +23,7 @@ class SignupPage:
         column = ["id"]
         data=[id]
 
-        self.db.read(table,column,data,"")
+        self.db.read(table,column,data)
 
         if len(id)>20:
             self.ui.sginupPageDoubleCheckErrorMessage.setText("20자 이내로 작성!") 
@@ -68,7 +69,7 @@ class SignupPage:
                 column=["contact"]
                 data=[contact]
 
-                self.db.read(table,column,data,"")
+                self.db.read(table,column,data)
 
                 if len(self.db.readResult)>0:
                     self.ui.signupPageErrorMessage.setText("이미 존재하는 연락처입니다.\n로그인을 진행해주세요.") 
@@ -89,12 +90,12 @@ class SignupPage:
                     # 회원가입 성공시, 1. 바로 로그인 페이지로 이동하게 고치기
                     self.ui.stackedWidget.setCurrentWidget(self.ui.LoginPage)
 
-                    # 회원가입 성공시, 2. 나의 플레이리스트 공백(=0? none?)으로 미리 설정
-                    # table = "playlist"
-                    # column = ["playlistTitle","videoTitle","userId"]
-                    # data=[0,0,id]
+                    # # 회원가입 성공시, 2. 나의 플레이리스트 공백으로 미리 설정
+                    # tableSet = "playlist"
+                    # columnSet = ["playlistTitle","userId"]
+                    # dataSet=["title", id]
 
-                    # self.db.insert(table,column,data)
+                    # self.db.insert(tableSet,columnSet,dataSet)
 
     # 정보 초기화 : 아이디 비번 입력한거 초기화
     def clearInput(self):
